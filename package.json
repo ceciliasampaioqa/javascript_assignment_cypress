@@ -1,7 +1,7 @@
 {
   "name": "javascriptassignmentcypress",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cypress automation project for testing Automation Exercise website with parallel execution across multiple browsers",
   "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
@@ -18,9 +18,15 @@
     "report:edge": "marge cypress/reports/mochawesome/edge/merged.json -f report-edge -o cypress/reports/mochawesome/edge --reportTitle \"Test Report - Edge\"",
     "generate:all:reports": "npm-run-all merge:chrome report:chrome merge:firefox report:firefox merge:edge report:edge"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cypress",
+    "automation",
+    "testing",
+    "e2e",
+    "javascript"
+  ],
+  "author": "Cecilia Sampaio",
+  "license": "MIT",
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
     "concurrently": "^9.2.0",

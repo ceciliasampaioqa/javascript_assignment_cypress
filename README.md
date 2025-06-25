@@ -66,7 +66,7 @@ This will:
 - Run tests in parallel on **Chrome**, **Firefox**, and **Edge** using concurrently
 - Outputs JSON reports per browser.
 
-### Option 2: Run a single browser manually(You can run simultaneously)
+### Option 2: Run a single browser manually (You can run simultaneously)
 
 ```bash
 npm run test:chrome
@@ -79,6 +79,50 @@ npm run test:edge
 ```bash
 npm run cypress:open
 ```
+
+---
+
+## 🚀 GitHub Actions CI/CD
+
+This project includes **automated testing with GitHub Actions** that runs on every push and pull request to the main branch.
+
+### 🔄 Automated Workflow
+
+The CI/CD pipeline (`cypress-tests.yml`) automatically:
+
+1. **🧪 Runs tests in parallel** across Chrome, Firefox, and Edge browsers
+2. **📊 Generates detailed HTML reports** for each browser using Mochawesome
+3. **📦 Uploads artifacts** with test results and reports for easy access
+4. **📋 Creates a comprehensive summary** in the GitHub Actions run
+5. **🔄 Triggers on every push/PR** to ensure code quality
+
+### 🎯 Benefits of CI/CD
+
+- **✅ Early Bug Detection**: Tests run automatically on every code change
+- **🚀 Faster Feedback**: Get test results within minutes of pushing code
+- **🔄 Consistent Testing**: Same test environment across all developers
+- **📊 Detailed Reports**: HTML reports with screenshots and test details
+- **🛡️ Quality Gate**: Prevents merging code that breaks tests
+- **💼 Professional**: Shows commitment to code quality in your portfolio
+
+### 📥 Accessing Test Reports
+
+After each workflow completion:
+
+1. Go to the **Actions** tab in your repository
+2. Click on the completed workflow run
+3. Scroll down to **Artifacts** section
+4. Download **cypress-html-reports** to view detailed HTML reports
+5. Each browser has its own report with test results, screenshots, and performance data
+
+### 🔍 What Gets Tested Automatically
+
+- ✅ User registration with dynamic data
+- ✅ Login scenarios (valid and invalid)
+- ✅ Product search functionality
+- ✅ Add to cart operations
+- ✅ Complete checkout process
+- ✅ Cross-browser compatibility (Chrome, Firefox, Edge)
 
 ---
 

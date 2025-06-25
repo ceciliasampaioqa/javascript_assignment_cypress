@@ -1,0 +1,108 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Job to run tests in parallel across browsers
+  cypress-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Clean previous reports
+        run: npm run clean:all:reports
+
+      - name: Run Cypress tests on ${{ matrix.browser }}
+        run: npm run test:${{ matrix.browser }}
+        env:
+          SPLIT: 3
+          SPLIT_INDEX: ${{ matrix.browser == 'chrome' && 1 || matrix.browser == 'firefox' && 2 || 3 }}
+          REPORT_NAME: ${{ matrix.browser }}
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-results-${{ matrix.browser }}
+          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons/
+          retention-days: 30
+
+  # Job to generate reports after all tests complete
+  generate-reports:
+    needs: cypress-tests
+    runs-on: ubuntu-latest
+    if: always() # Run even if tests fail to generate reports
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download test results from Chrome
+        uses: actions/download-artifact@v4
+        with:
+          name: cypress-results-chrome
+          path: cypress/reports/mochawesome/chrome/.jsons/
+
+      - name: Download test results from Firefox
+        uses: actions/download-artifact@v4
+        with:
+          name: cypress-results-firefox
+          path: cypress/reports/mochawesome/firefox/.jsons/
+
+      - name: Download test results from Edge
+        uses: actions/download-artifact@v4
+        with:
+          name: cypress-results-edge
+          path: cypress/reports/mochawesome/edge/.jsons/
+
+      - name: Generate all reports
+        run: npm run generate:all:reports
+
+      - name: Upload HTML reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-html-reports
+          path: |
+            cypress/reports/mochawesome/chrome/report-chrome.html
+            cypress/reports/mochawesome/firefox/report-firefox.html
+            cypress/reports/mochawesome/edge/report-edge.html
+          retention-days: 30
+
+      - name: Create summary of test results
+        run: |
+          echo "## 📊 Cypress Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Browser Test Reports Generated:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🟢 **Chrome**: [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🟢 **Firefox**: [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🟢 **Edge**: [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📁 **Artifact Name**: cypress-html-reports" >> $GITHUB_STEP_SUMMARY
+          echo "📋 **Contains**: HTML reports for all browsers" >> $GITHUB_STEP_SUMMARY
