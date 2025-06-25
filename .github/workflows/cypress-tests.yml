@@ -32,10 +32,8 @@ jobs:
         run: npm run clean:all:reports
 
       - name: Run Cypress tests on ${{ matrix.browser }}
-        run: npm run test:${{ matrix.browser }}
+        run: npm run ci:${{ matrix.browser }}
         env:
-          SPLIT: 3
-          SPLIT_INDEX: ${{ matrix.browser == 'chrome' && 1 || matrix.browser == 'firefox' && 2 || 3 }}
           REPORT_NAME: ${{ matrix.browser }}
 
       - name: Upload test results

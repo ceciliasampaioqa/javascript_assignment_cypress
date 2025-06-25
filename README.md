@@ -54,7 +54,7 @@ npm install
 
 ## 🚀 How to run the tests
 
-### Option 1: Run tests in all 3 browsers in parallel
+### Option 1: Run tests in all 3 browsers in parallel (Local Execution)
 
 ```bash
 npm run test:parallel
@@ -64,14 +64,31 @@ This will:
 
 - Clean previous reports for each browser
 - Run tests in parallel on **Chrome**, **Firefox**, and **Edge** using concurrently
+- Uses **cypress-split** for optimized test distribution
 - Outputs JSON reports per browser.
 
-### Option 2: Run a single browser manually (You can run simultaneously)
+### Option 2: Run a single browser manually (Local Execution - You can run simultaneously)
 
 ```bash
 npm run test:chrome
 npm run test:firefox
 npm run test:edge
+```
+
+### Option 3: CI/CD Execution (GitHub Actions)
+
+The CI/CD pipeline uses optimized scripts without cypress-split:
+
+```bash
+npm run ci:parallel
+```
+
+Or individual browsers:
+
+```bash
+npm run ci:chrome
+npm run ci:firefox
+npm run ci:edge
 ```
 
 ### Run Cypress in interactive mode
