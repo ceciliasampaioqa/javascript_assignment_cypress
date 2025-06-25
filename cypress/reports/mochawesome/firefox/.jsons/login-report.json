@@ -1,0 +1,126 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-25T13:55:25.325Z",
+    "end": "2025-06-25T13:55:51.291Z",
+    "duration": 25966,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "60e66706-3556-4170-bfbc-99872eae27df",
+      "title": "",
+      "fullFile": "cypress/e2e/login.cy.js",
+      "file": "cypress/e2e/login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cd600624-a262-473f-93f5-9b0956f88aa8",
+          "title": "User Login - Valid and Invalid Credentials",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login successfully with valid credentials",
+              "fullTitle": "User Login - Valid and Invalid Credentials should login successfully with valid credentials",
+              "timedOut": null,
+              "duration": 23314,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'));\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
+              "err": {},
+              "uuid": "703bd719-45b5-4244-a558-8ea3f0af0744",
+              "parentUUID": "cd600624-a262-473f-93f5-9b0956f88aa8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display error with invalid credentials",
+              "fullTitle": "User Login - Valid and Invalid Credentials should display error with invalid credentials",
+              "timedOut": null,
+              "duration": 2414,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('wrong@email.com', 'incorrectPassword');\ncy.get('.login-form p').should('contain.text', 'Your email or password is incorrect!');",
+              "err": {},
+              "uuid": "09291f80-f77a-4887-9d89-c6bc0d29537f",
+              "parentUUID": "cd600624-a262-473f-93f5-9b0956f88aa8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "703bd719-45b5-4244-a558-8ea3f0af0744",
+            "09291f80-f77a-4887-9d89-c6bc0d29537f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 25728,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "[name]-report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome/firefox/.jsons",
+        "reportFilename": "[name]-report",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportFileName": "[name]-report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

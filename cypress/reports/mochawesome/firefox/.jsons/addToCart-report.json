@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-25T13:54:34.757Z",
+    "end": "2025-06-25T13:54:42.190Z",
+    "duration": 7433,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4ee5ebc9-5e5f-4c61-bba8-fa7e92503943",
+      "title": "",
+      "fullFile": "cypress/e2e/addToCart.cy.js",
+      "file": "cypress/e2e/addToCart.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8b94b993-9847-4f0e-8273-a310c9d51680",
+          "title": "Add Product to Cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should add a product to cart and verify cart updates",
+              "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
+              "timedOut": null,
+              "duration": 7286,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_description\"]').should('be.exist');",
+              "err": {},
+              "uuid": "2f3931d7-6231-4ec2-a644-47b5727225fe",
+              "parentUUID": "8b94b993-9847-4f0e-8273-a310c9d51680",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2f3931d7-6231-4ec2-a644-47b5727225fe"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7286,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "[name]-report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome/firefox/.jsons",
+        "reportFilename": "[name]-report",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportFileName": "[name]-report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
