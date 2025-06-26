@@ -7,7 +7,6 @@ on:
     branches: [main]
 
 jobs:
-  # Job to run tests in parallel across browsers
   cypress-tests:
     runs-on: ubuntu-latest
     strategy:
@@ -28,24 +27,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prepare report folder for ${{ matrix.browser }}
+        run: mkdir -p cypress/reports/mochawesome/${{ matrix.browser }}/.jsons
+
       - name: Run Cypress tests on ${{ matrix.browser }}
         run: npm run ci:${{ matrix.browser }}
         env:
           REPORT_NAME: ${{ matrix.browser }}
 
-      - name: Upload test results
+      - name: Upload test results (JSON)
         uses: actions/upload-artifact@v4
         with:
           name: cypress-results-${{ matrix.browser }}
-          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons/*.json
+          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons
           retention-days: 30
-          if-no-files-found: warn
 
-  # Job to generate reports after all tests complete
   generate-reports:
     needs: cypress-tests
     runs-on: ubuntu-latest
-    if: always() # Run even if tests fail to generate reports
+    if: always()
 
     steps:
       - name: Checkout code
@@ -60,42 +60,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create reports directories
+      - name: Create JSON directories
         run: |
           mkdir -p cypress/reports/mochawesome/chrome/.jsons
           mkdir -p cypress/reports/mochawesome/firefox/.jsons
           mkdir -p cypress/reports/mochawesome/edge/.jsons
 
-      - name: Download test results from Chrome
+      - name: Download Chrome results
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-chrome
-          path: cypress/reports/mochawesome/chrome/.jsons/
-          if-no-files-found: warn
+          path: cypress/reports/mochawesome/chrome/.jsons
 
-      - name: Download test results from Firefox
+      - name: Download Firefox results
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-firefox
-          path: cypress/reports/mochawesome/firefox/.jsons/
-          if-no-files-found: warn
+          path: cypress/reports/mochawesome/firefox/.jsons
 
-      - name: Download test results from Edge
+      - name: Download Edge results
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-edge
-          path: cypress/reports/mochawesome/edge/.jsons/
-          if-no-files-found: warn
-
-      - name: Check if JSON files exist
-        run: |
-          echo "Checking for JSON files in each browser directory:"
-          echo "Chrome files:"
-          ls -la cypress/reports/mochawesome/chrome/.jsons/ || echo "No Chrome files found"
-          echo "Firefox files:"
-          ls -la cypress/reports/mochawesome/firefox/.jsons/ || echo "No Firefox files found"
-          echo "Edge files:"
-          ls -la cypress/reports/mochawesome/edge/.jsons/ || echo "No Edge files found"
+          path: cypress/reports/mochawesome/edge/.jsons
 
       - name: Generate all reports
         run: npm run generate:all:reports
@@ -110,16 +97,10 @@ jobs:
             cypress/reports/mochawesome/firefox/report-firefox.html
             cypress/reports/mochawesome/edge/report-edge.html
           retention-days: 30
-          if-no-files-found: warn
 
-      - name: Create summary of test results
+      - name: Add summary to PR
         run: |
           echo "## 📊 Cypress Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Browser Test Reports Generated:" >> $GITHUB_STEP_SUMMARY
-          echo "- 🟢 **Chrome**: [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🟢 **Firefox**: [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🟢 **Edge**: [Download Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📁 **Artifact Name**: cypress-html-reports" >> $GITHUB_STEP_SUMMARY
-          echo "📋 **Contains**: HTML reports for all browsers" >> $GITHUB_STEP_SUMMARY
+          echo "- 🟢 Chrome report available" >> $GITHUB_STEP_SUMMARY
+          echo "- 🟢 Firefox report available" >> $GITHUB_STEP_SUMMARY
+          echo "- 🟢 Edge report available" >> $GITHUB_STEP_SUMMARY
