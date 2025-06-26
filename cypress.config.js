@@ -23,11 +23,11 @@ module.exports = defineConfig({
       // Customiza diretório de relatório com base na variável de ambiente REPORT_NAME
       const reportName = config.env.REPORT_NAME || 'default'
       config.reporterOptions = {
-        reportDir: `cypress/reports/mochawesome/${reportName}`,
+        reportDir: 'cypress/reports/mochawesome',
         overwrite: true,
         html: false,
         json: true,
-        reportFilename: '[name]-report'
+        reportFilename: `${reportName}-[name]-report`
       }
 
       return config

@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-25T13:55:23.791Z",
-    "end": "2025-06-25T13:55:46.067Z",
-    "duration": 22276,
+    "start": "2025-06-26T10:52:37.132Z",
+    "end": "2025-06-26T10:52:57.797Z",
+    "duration": 20665,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "4486f926-b763-4e75-83cf-0b7de86b57a4",
+      "uuid": "179c9966-dd88-4d8c-80ca-1108e1edc9cf",
       "title": "",
       "fullFile": "cypress/e2e/login.cy.js",
       "file": "cypress/e2e/login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "35ba7143-a023-47b2-8568-6af3a68f7670",
+          "uuid": "9167f42a-4eea-42f1-aeea-262c20d95d20",
           "title": "User Login - Valid and Invalid Credentials",
           "fullFile": "",
           "file": "",
@@ -38,17 +38,17 @@
               "title": "should login successfully with valid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should login successfully with valid credentials",
               "timedOut": null,
-              "duration": 19662,
+              "duration": 17870,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'));\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
+              "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
               "err": {},
-              "uuid": "e2aacd9b-f3ab-4d91-8ba6-08a088d91dc9",
-              "parentUUID": "35ba7143-a023-47b2-8568-6af3a68f7670",
+              "uuid": "399a1657-f3c3-425a-ac56-5c44d19e1b08",
+              "parentUUID": "9167f42a-4eea-42f1-aeea-262c20d95d20",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should display error with invalid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should display error with invalid credentials",
               "timedOut": null,
-              "duration": 2361,
+              "duration": 2480,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.login('wrong@email.com', 'incorrectPassword');\ncy.get('.login-form p').should('contain.text', 'Your email or password is incorrect!');",
               "err": {},
-              "uuid": "319c3331-3b64-4b51-a4b9-2348e445840e",
-              "parentUUID": "35ba7143-a023-47b2-8568-6af3a68f7670",
+              "uuid": "da503131-ba36-4773-9210-8856771ea7c6",
+              "parentUUID": "9167f42a-4eea-42f1-aeea-262c20d95d20",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "e2aacd9b-f3ab-4d91-8ba6-08a088d91dc9",
-            "319c3331-3b64-4b51-a4b9-2348e445840e"
+            "399a1657-f3c3-425a-ac56-5c44d19e1b08",
+            "da503131-ba36-4773-9210-8856771ea7c6"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 22023,
+          "duration": 20350,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -102,7 +102,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "[name]-report",
+        "reportFilename": "edge-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -113,8 +113,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/edge/.jsons",
-        "reportFilename": "[name]-report",
+        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportFilename": "edge-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,

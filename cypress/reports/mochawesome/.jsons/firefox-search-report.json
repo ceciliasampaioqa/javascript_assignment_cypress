@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-25T13:54:47.770Z",
-    "end": "2025-06-25T13:55:20.221Z",
-    "duration": 32451,
+    "start": "2025-06-26T10:53:04.084Z",
+    "end": "2025-06-26T10:53:12.941Z",
+    "duration": 8857,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,49 +18,49 @@
   },
   "results": [
     {
-      "uuid": "3b00414f-b726-4c7c-aa29-75cbb1f78209",
+      "uuid": "058cfdf0-09bb-419b-acb9-07318bab9e68",
       "title": "",
-      "fullFile": "cypress/e2e/checkout.cy.js",
-      "file": "cypress/e2e/checkout.cy.js",
+      "fullFile": "cypress/e2e/search.cy.js",
+      "file": "cypress/e2e/search.cy.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "cce968ce-be70-4d71-b53a-7350286b171c",
-          "title": "Checkout Process",
+          "uuid": "a96c41d7-43bc-43f7-bd20-46cab30b905b",
+          "title": "Product Search",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
             {
-              "title": "should complete the checkout process successfully",
-              "fullTitle": "Checkout Process should complete the checkout process successfully",
+              "title": "should display search results and view product details",
+              "fullTitle": "Product Search should display search results and view product details",
               "timedOut": null,
-              "duration": 32259,
+              "duration": 8714,
               "state": "passed",
-              "speed": "slow",
+              "speed": "medium",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'));\ncy.addProductToCart();\ncy.contains('View Cart').click();\ncy.checkoutProduct();\ncy.contains('[data-qa=\"order-placed\"]', 'Order Placed!').should('be.visible');",
+              "code": "const productNames = ['Sleeveless Dress', 'Blue Top', 'Men Tshirt'];\nconst productName = productNames[Math.floor(Math.random() * productNames.length)];\ncy.searchProduct(productName);\ncy.contains(productName).should('be.visible');\ncy.contains('a', 'View Product').click();\ncy.contains('Add to cart').should('be.visible');",
               "err": {},
-              "uuid": "f3871985-e068-4c8a-9c2d-38d93260e8b4",
-              "parentUUID": "cce968ce-be70-4d71-b53a-7350286b171c",
+              "uuid": "3e40f9c2-329a-4f2e-969c-02a91e20010c",
+              "parentUUID": "a96c41d7-43bc-43f7-bd20-46cab30b905b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f3871985-e068-4c8a-9c2d-38d93260e8b4"
+            "3e40f9c2-329a-4f2e-969c-02a91e20010c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 32259,
+          "duration": 8714,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -83,7 +83,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "[name]-report",
+        "reportFilename": "firefox-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -94,8 +94,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/firefox/.jsons",
-        "reportFilename": "[name]-report",
+        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportFilename": "firefox-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,

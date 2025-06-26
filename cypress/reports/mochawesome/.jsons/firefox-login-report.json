@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-25T13:55:23.188Z",
-    "end": "2025-06-25T13:55:41.747Z",
-    "duration": 18559,
+    "start": "2025-06-26T10:52:38.580Z",
+    "end": "2025-06-26T10:52:59.215Z",
+    "duration": 20635,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "9480e495-edde-419c-815e-bdceee6102c3",
+      "uuid": "db69a0e1-8ce4-4aa7-8c54-117726189c08",
       "title": "",
       "fullFile": "cypress/e2e/login.cy.js",
       "file": "cypress/e2e/login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "fcb4d344-1a7d-4e2c-b237-4714c65d35c5",
+          "uuid": "a48e4251-a007-4a2b-b142-c03fd0457fa9",
           "title": "User Login - Valid and Invalid Credentials",
           "fullFile": "",
           "file": "",
@@ -38,17 +38,17 @@
               "title": "should login successfully with valid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should login successfully with valid credentials",
               "timedOut": null,
-              "duration": 16086,
+              "duration": 17629,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'));\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
+              "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
               "err": {},
-              "uuid": "f329ba81-42ac-48a7-9f8d-c035f4874da0",
-              "parentUUID": "fcb4d344-1a7d-4e2c-b237-4714c65d35c5",
+              "uuid": "2f8a6065-30a9-4f9f-99a1-e56d67c2397e",
+              "parentUUID": "a48e4251-a007-4a2b-b142-c03fd0457fa9",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should display error with invalid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should display error with invalid credentials",
               "timedOut": null,
-              "duration": 2268,
+              "duration": 2804,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.login('wrong@email.com', 'incorrectPassword');\ncy.get('.login-form p').should('contain.text', 'Your email or password is incorrect!');",
               "err": {},
-              "uuid": "42415e43-678e-48c5-bcdf-f519dc04cdff",
-              "parentUUID": "fcb4d344-1a7d-4e2c-b237-4714c65d35c5",
+              "uuid": "09cc5346-e080-46a1-83f3-e8e20cea92ce",
+              "parentUUID": "a48e4251-a007-4a2b-b142-c03fd0457fa9",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f329ba81-42ac-48a7-9f8d-c035f4874da0",
-            "42415e43-678e-48c5-bcdf-f519dc04cdff"
+            "2f8a6065-30a9-4f9f-99a1-e56d67c2397e",
+            "09cc5346-e080-46a1-83f3-e8e20cea92ce"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 18354,
+          "duration": 20433,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -102,7 +102,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "[name]-report",
+        "reportFilename": "firefox-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -113,8 +113,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/chrome/.jsons",
-        "reportFilename": "[name]-report",
+        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportFilename": "firefox-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,

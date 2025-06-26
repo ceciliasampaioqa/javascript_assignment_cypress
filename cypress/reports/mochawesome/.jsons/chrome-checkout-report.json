@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-25T13:54:45.406Z",
-    "end": "2025-06-25T13:55:16.263Z",
-    "duration": 30857,
+    "start": "2025-06-26T10:51:58.890Z",
+    "end": "2025-06-26T10:52:28.216Z",
+    "duration": 29326,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "85018829-f863-4f9f-aded-d97616e40a94",
+      "uuid": "e46f6c6f-5d2d-4d5d-9c12-cfededa9491b",
       "title": "",
       "fullFile": "cypress/e2e/checkout.cy.js",
       "file": "cypress/e2e/checkout.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "1986445e-497d-4fc0-9560-590cac6f8633",
+          "uuid": "1b426d46-d529-4ab4-a8a7-3595f0ad1e27",
           "title": "Checkout Process",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,29 @@
               "title": "should complete the checkout process successfully",
               "fullTitle": "Checkout Process should complete the checkout process successfully",
               "timedOut": null,
-              "duration": 30631,
+              "duration": 29190,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.login(Cypress.env('userEmail'), Cypress.env('userPassword'));\ncy.addProductToCart();\ncy.contains('View Cart').click();\ncy.checkoutProduct();\ncy.contains('[data-qa=\"order-placed\"]', 'Order Placed!').should('be.visible');",
+              "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.addProductToCart();\ncy.contains('View Cart').click();\ncy.checkoutProduct();\ncy.contains('[data-qa=\"order-placed\"]', 'Order Placed!').should('be.visible');",
               "err": {},
-              "uuid": "fc281a98-f31d-45a0-8c4e-4d4fa1a7b32d",
-              "parentUUID": "1986445e-497d-4fc0-9560-590cac6f8633",
+              "uuid": "b906d80a-75a6-41a0-94f1-23a479d02c18",
+              "parentUUID": "1b426d46-d529-4ab4-a8a7-3595f0ad1e27",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fc281a98-f31d-45a0-8c4e-4d4fa1a7b32d"
+            "b906d80a-75a6-41a0-94f1-23a479d02c18"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 30631,
+          "duration": 29190,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -83,7 +83,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "[name]-report",
+        "reportFilename": "chrome-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -94,8 +94,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/chrome/.jsons",
-        "reportFilename": "[name]-report",
+        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportFilename": "chrome-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,

@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-25T13:54:34.757Z",
-    "end": "2025-06-25T13:54:42.190Z",
-    "duration": 7433,
+    "start": "2025-06-26T10:51:40.160Z",
+    "end": "2025-06-26T10:51:50.948Z",
+    "duration": 10788,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "4ee5ebc9-5e5f-4c61-bba8-fa7e92503943",
+      "uuid": "820932bb-8a26-4a12-80d0-23cb91bb330f",
       "title": "",
       "fullFile": "cypress/e2e/addToCart.cy.js",
       "file": "cypress/e2e/addToCart.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "8b94b993-9847-4f0e-8273-a310c9d51680",
+          "uuid": "960bccaf-064b-432e-aa3c-0058ed0a3df3",
           "title": "Add Product to Cart",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,29 @@
               "title": "should add a product to cart and verify cart updates",
               "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
               "timedOut": null,
-              "duration": 7286,
+              "duration": 10606,
               "state": "passed",
-              "speed": "medium",
+              "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_description\"]').should('be.exist');",
               "err": {},
-              "uuid": "2f3931d7-6231-4ec2-a644-47b5727225fe",
-              "parentUUID": "8b94b993-9847-4f0e-8273-a310c9d51680",
+              "uuid": "ce37007b-6122-4be1-9259-2d1ae139ae91",
+              "parentUUID": "960bccaf-064b-432e-aa3c-0058ed0a3df3",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "2f3931d7-6231-4ec2-a644-47b5727225fe"
+            "ce37007b-6122-4be1-9259-2d1ae139ae91"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 7286,
+          "duration": 10606,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -83,7 +83,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "[name]-report",
+        "reportFilename": "edge-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -94,8 +94,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/firefox/.jsons",
-        "reportFilename": "[name]-report",
+        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportFilename": "edge-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,
