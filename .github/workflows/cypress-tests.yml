@@ -27,20 +27,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Prepare report folder for ${{ matrix.browser }}
-        run: mkdir -p cypress/reports/mochawesome/${{ matrix.browser }}/.jsons
-
       - name: Run Cypress tests on ${{ matrix.browser }}
-        run: npm run ci:${{ matrix.browser }}
+        run: |
+          mkdir -p cypress/reports/mochawesome/${{ matrix.browser }}/.jsons
+          npm run ci:${{ matrix.browser }}
         env:
           REPORT_NAME: ${{ matrix.browser }}
 
-      - name: Upload test results (JSON)
+      - name: Upload JSON test results
         uses: actions/upload-artifact@v4
         with:
           name: cypress-results-${{ matrix.browser }}
-          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons
-          retention-days: 30
+          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons/*.json
 
   generate-reports:
     needs: cypress-tests
@@ -60,33 +58,26 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create JSON directories
-        run: |
-          mkdir -p cypress/reports/mochawesome/chrome/.jsons
-          mkdir -p cypress/reports/mochawesome/firefox/.jsons
-          mkdir -p cypress/reports/mochawesome/edge/.jsons
-
-      - name: Download Chrome results
+      - name: Download test results from Chrome
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-chrome
           path: cypress/reports/mochawesome/chrome/.jsons
 
-      - name: Download Firefox results
+      - name: Download test results from Firefox
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-firefox
           path: cypress/reports/mochawesome/firefox/.jsons
 
-      - name: Download Edge results
+      - name: Download test results from Edge
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-edge
           path: cypress/reports/mochawesome/edge/.jsons
 
-      - name: Generate all reports
+      - name: Generate HTML reports
         run: npm run generate:all:reports
-        continue-on-error: true
 
       - name: Upload HTML reports
         uses: actions/upload-artifact@v4
@@ -98,9 +89,8 @@ jobs:
             cypress/reports/mochawesome/edge/report-edge.html
           retention-days: 30
 
-      - name: Add summary to PR
+      - name: Add summary to workflow
         run: |
           echo "## 📊 Cypress Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "- 🟢 Chrome report available" >> $GITHUB_STEP_SUMMARY
-          echo "- 🟢 Firefox report available" >> $GITHUB_STEP_SUMMARY
-          echo "- 🟢 Edge report available" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅
