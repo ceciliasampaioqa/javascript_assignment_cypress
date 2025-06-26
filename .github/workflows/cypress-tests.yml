@@ -28,9 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Clean previous reports
-        run: npm run clean:all:reports
-
       - name: Run Cypress tests on ${{ matrix.browser }}
         run: npm run ci:${{ matrix.browser }}
         env:
@@ -40,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cypress-results-${{ matrix.browser }}
-          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons/
+          path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons/*.json
           retention-days: 30
           if-no-files-found: warn
 
