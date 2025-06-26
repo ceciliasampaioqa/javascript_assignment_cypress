@@ -9,6 +9,10 @@ on:
 jobs:
   cypress-tests:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,19 +26,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress tests (Chrome)
-        run: npm run ci:chrome
-
-      - name: Run Cypress tests (Firefox)
-        run: npm run ci:firefox
-
-      - name: Run Cypress tests (Edge)
-        run: npm run ci:edge
+      - name: Run Cypress tests (${{ matrix.browser }})
+        run: npm run ci:${{ matrix.browser }}
 
       - name: Upload mochawesome JSONs
         uses: actions/upload-artifact@v4
         with:
-          name: mochawesome-jsons
+          name: mochawesome-jsons-${{ matrix.browser }}
           path: cypress/reports/mochawesome/.jsons/*.json
           retention-days: 2
 
@@ -54,10 +52,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Download mochawesome JSONs
+      - name: Download mochawesome JSONs (chrome)
         uses: actions/download-artifact@v4
         with:
-          name: mochawesome-jsons
+          name: mochawesome-jsons-chrome
+          path: cypress/reports/mochawesome/.jsons/
+
+      - name: Download mochawesome JSONs (firefox)
+        uses: actions/download-artifact@v4
+        with:
+          name: mochawesome-jsons-firefox
+          path: cypress/reports/mochawesome/.jsons/
+
+      - name: Download mochawesome JSONs (edge)
+        uses: actions/download-artifact@v4
+        with:
+          name: mochawesome-jsons-edge
           path: cypress/reports/mochawesome/.jsons/
 
       - name: Merge and generate HTML reports
