@@ -29,8 +29,11 @@ jobs:
 
       - name: Run Cypress tests on ${{ matrix.browser }}
         run: |
-          mkdir -p cypress/reports/mochawesome/${{ matrix.browser }}/.jsons
+          export CYPRESS_REPORT_PATH=cypress/reports/mochawesome/${{ matrix.browser }}
+          mkdir -p $CYPRESS_REPORT_PATH/.jsons
           npm run ci:${{ matrix.browser }}
+          echo "Copying mochawesome JSON reports to .jsons folder..."
+          cp $CYPRESS_REPORT_PATH/*.json $CYPRESS_REPORT_PATH/.jsons/ || echo "No JSONs to copy"
         env:
           REPORT_NAME: ${{ matrix.browser }}
 
@@ -62,35 +65,4 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-chrome
-          path: cypress/reports/mochawesome/chrome/.jsons
-
-      - name: Download test results from Firefox
-        uses: actions/download-artifact@v4
-        with:
-          name: cypress-results-firefox
-          path: cypress/reports/mochawesome/firefox/.jsons
-
-      - name: Download test results from Edge
-        uses: actions/download-artifact@v4
-        with:
-          name: cypress-results-edge
-          path: cypress/reports/mochawesome/edge/.jsons
-
-      - name: Generate HTML reports
-        run: npm run generate:all:reports
-
-      - name: Upload HTML reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-html-reports
-          path: |
-            cypress/reports/mochawesome/chrome/report-chrome.html
-            cypress/reports/mochawesome/firefox/report-firefox.html
-            cypress/reports/mochawesome/edge/report-edge.html
-          retention-days: 30
-
-      - name: Add summary to workflow
-        run: |
-          echo "## 📊 Cypress Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅
+          path: cypress/reports/mochawe
