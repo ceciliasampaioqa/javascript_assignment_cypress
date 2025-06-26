@@ -42,6 +42,7 @@ jobs:
           name: cypress-results-${{ matrix.browser }}
           path: cypress/reports/mochawesome/${{ matrix.browser }}/.jsons/
           retention-days: 30
+          if-no-files-found: warn
 
   # Job to generate reports after all tests complete
   generate-reports:
@@ -62,26 +63,46 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create reports directories
+        run: |
+          mkdir -p cypress/reports/mochawesome/chrome/.jsons
+          mkdir -p cypress/reports/mochawesome/firefox/.jsons
+          mkdir -p cypress/reports/mochawesome/edge/.jsons
+
       - name: Download test results from Chrome
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-chrome
           path: cypress/reports/mochawesome/chrome/.jsons/
+          if-no-files-found: warn
 
       - name: Download test results from Firefox
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-firefox
           path: cypress/reports/mochawesome/firefox/.jsons/
+          if-no-files-found: warn
 
       - name: Download test results from Edge
         uses: actions/download-artifact@v4
         with:
           name: cypress-results-edge
           path: cypress/reports/mochawesome/edge/.jsons/
+          if-no-files-found: warn
+
+      - name: Check if JSON files exist
+        run: |
+          echo "Checking for JSON files in each browser directory:"
+          echo "Chrome files:"
+          ls -la cypress/reports/mochawesome/chrome/.jsons/ || echo "No Chrome files found"
+          echo "Firefox files:"
+          ls -la cypress/reports/mochawesome/firefox/.jsons/ || echo "No Firefox files found"
+          echo "Edge files:"
+          ls -la cypress/reports/mochawesome/edge/.jsons/ || echo "No Edge files found"
 
       - name: Generate all reports
         run: npm run generate:all:reports
+        continue-on-error: true
 
       - name: Upload HTML reports
         uses: actions/upload-artifact@v4
@@ -92,6 +113,7 @@ jobs:
             cypress/reports/mochawesome/firefox/report-firefox.html
             cypress/reports/mochawesome/edge/report-edge.html
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Create summary of test results
         run: |
