@@ -51,6 +51,7 @@ jobs:
           name: mochawesome-jsons-${{ matrix.browser }}
           path: cypress/reports/mochawesome/.jsons/${{ matrix.browser }}/
           retention-days: 2
+          overwrite: true # Força a sobrescrita de artefatos antigos
         if: always()
 
   generate-report:
@@ -69,6 +70,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Clean report directory
+        run: rm -rf cypress/reports/mochawesome/* || echo "No files to clean"
+        if: always()
 
       - name: Ensure .jsons folder exists
         run: mkdir -p cypress/reports/mochawesome/.jsons
@@ -91,14 +96,18 @@ jobs:
           name: mochawesome-jsons-edge
           path: cypress/reports/mochawesome/.jsons/edge
 
+      - name: List downloaded JSONs
+        run: ls -lah cypress/reports/mochawesome/.jsons/*/ || echo "No files found"
+        if: always()
+
       - name: Merge and generate HTML reports
         run: npm run generate:all:reports
 
       - name: Ensure assets folder exists
         run: mkdir -p cypress/reports/mochawesome/assets
 
-      - name: Copy assets (if generated locally)
-        run: cp -r node_modules/mochawesome-report-generator/assets/* cypress/reports/mochawesome/assets/ || echo "Assets not copied (may not be needed)"
+      - name: Copy assets
+        run: cp -r node_modules/mochawesome-report-generator/assets/* cypress/reports/mochawesome/assets/ || echo "Assets not copied"
         if: always()
 
       - name: Upload HTML reports
