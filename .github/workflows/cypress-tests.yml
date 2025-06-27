@@ -30,12 +30,16 @@ jobs:
       - name: Run Cypress tests (${{ matrix.browser }})
         run: npm run ci:${{ matrix.browser }}
 
+      - name: List generated mochawesome JSONs
+        run: ls -lah cypress/reports/mochawesome/.jsons || echo "Directory not found"
+
       - name: Upload mochawesome JSONs
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-jsons-${{ matrix.browser }}
-          path: cypress/reports/mochawesome/.jsons/${{ matrix.browser }}-*.json
+          path: cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*.json
           retention-days: 2
+        if: always()
 
   generate-report:
     needs: cypress-tests

@@ -12,13 +12,13 @@
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2025-06-26T10:51:40.160Z",
-    "end": "2025-06-26T10:53:10.572Z",
-    "duration": 90412
+    "start": "2025-06-27T11:07:29.823Z",
+    "end": "2025-06-27T11:08:51.565Z",
+    "duration": 81742
   },
   "results": [
     {
-      "uuid": "820932bb-8a26-4a12-80d0-23cb91bb330f",
+      "uuid": "076abbc3-dbff-418e-a61f-43eeb956bb95",
       "title": "",
       "fullFile": "cypress/e2e/addToCart.cy.js",
       "file": "cypress/e2e/addToCart.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "960bccaf-064b-432e-aa3c-0058ed0a3df3",
+          "uuid": "ef8042fb-f9c8-4e2e-b270-1acdf05edab2",
           "title": "Add Product to Cart",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,29 @@
               "title": "should add a product to cart and verify cart updates",
               "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
               "timedOut": null,
-              "duration": 10606,
+              "duration": 5721,
               "state": "passed",
-              "speed": "slow",
+              "speed": "medium",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_description\"]').should('be.exist');",
               "err": {},
-              "uuid": "ce37007b-6122-4be1-9259-2d1ae139ae91",
-              "parentUUID": "960bccaf-064b-432e-aa3c-0058ed0a3df3",
+              "uuid": "21797c71-e69f-4c0d-91e1-5253da22ef81",
+              "parentUUID": "ef8042fb-f9c8-4e2e-b270-1acdf05edab2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "ce37007b-6122-4be1-9259-2d1ae139ae91"
+            "21797c71-e69f-4c0d-91e1-5253da22ef81"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 10606,
+          "duration": 5721,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -76,7 +76,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "b9129c4f-15cf-4ba1-a30a-8a7255d5fbe0",
+      "uuid": "76722643-9081-4e5e-b791-5578b47c10a1",
       "title": "",
       "fullFile": "cypress/e2e/checkout.cy.js",
       "file": "cypress/e2e/checkout.cy.js",
@@ -85,7 +85,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6e4de2a2-7a9a-4b36-820a-16620ed5b25d",
+          "uuid": "5164113b-c002-4b78-a38a-e96436802e43",
           "title": "Checkout Process",
           "fullFile": "",
           "file": "",
@@ -96,7 +96,7 @@
               "title": "should complete the checkout process successfully",
               "fullTitle": "Checkout Process should complete the checkout process successfully",
               "timedOut": null,
-              "duration": 30572,
+              "duration": 29951,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -105,20 +105,20 @@
               "context": null,
               "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.addProductToCart();\ncy.contains('View Cart').click();\ncy.checkoutProduct();\ncy.contains('[data-qa=\"order-placed\"]', 'Order Placed!').should('be.visible');",
               "err": {},
-              "uuid": "49b59498-6d4e-45e8-9d71-808dc72c87c6",
-              "parentUUID": "6e4de2a2-7a9a-4b36-820a-16620ed5b25d",
+              "uuid": "9e654d88-04e5-438e-9ce0-42d5da51fe92",
+              "parentUUID": "5164113b-c002-4b78-a38a-e96436802e43",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "49b59498-6d4e-45e8-9d71-808dc72c87c6"
+            "9e654d88-04e5-438e-9ce0-42d5da51fe92"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 30572,
+          "duration": 29951,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -134,7 +134,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "179c9966-dd88-4d8c-80ca-1108e1edc9cf",
+      "uuid": "3ffa744e-3bf4-4f04-8076-046c6df5daca",
       "title": "",
       "fullFile": "cypress/e2e/login.cy.js",
       "file": "cypress/e2e/login.cy.js",
@@ -143,7 +143,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "9167f42a-4eea-42f1-aeea-262c20d95d20",
+          "uuid": "8f53df32-f6bc-4e3a-aec7-d7a0b504de4a",
           "title": "User Login - Valid and Invalid Credentials",
           "fullFile": "",
           "file": "",
@@ -154,7 +154,7 @@
               "title": "should login successfully with valid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should login successfully with valid credentials",
               "timedOut": null,
-              "duration": 17870,
+              "duration": 17092,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -163,8 +163,8 @@
               "context": null,
               "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
               "err": {},
-              "uuid": "399a1657-f3c3-425a-ac56-5c44d19e1b08",
-              "parentUUID": "9167f42a-4eea-42f1-aeea-262c20d95d20",
+              "uuid": "7fcff118-0ef3-4fc0-adff-a2e589bba294",
+              "parentUUID": "8f53df32-f6bc-4e3a-aec7-d7a0b504de4a",
               "isHook": false,
               "skipped": false
             },
@@ -172,7 +172,7 @@
               "title": "should display error with invalid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should display error with invalid credentials",
               "timedOut": null,
-              "duration": 2480,
+              "duration": 2875,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -181,21 +181,21 @@
               "context": null,
               "code": "cy.login('wrong@email.com', 'incorrectPassword');\ncy.get('.login-form p').should('contain.text', 'Your email or password is incorrect!');",
               "err": {},
-              "uuid": "da503131-ba36-4773-9210-8856771ea7c6",
-              "parentUUID": "9167f42a-4eea-42f1-aeea-262c20d95d20",
+              "uuid": "c508a844-582f-419a-bdbb-e68ab9046179",
+              "parentUUID": "8f53df32-f6bc-4e3a-aec7-d7a0b504de4a",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "399a1657-f3c3-425a-ac56-5c44d19e1b08",
-            "da503131-ba36-4773-9210-8856771ea7c6"
+            "7fcff118-0ef3-4fc0-adff-a2e589bba294",
+            "c508a844-582f-419a-bdbb-e68ab9046179"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 20350,
+          "duration": 19967,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -211,7 +211,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "29e359cf-5afa-426f-896c-13a09584a69a",
+      "uuid": "3e1ecacd-22c5-4a61-83fc-6fdaf09193fe",
       "title": "",
       "fullFile": "cypress/e2e/search.cy.js",
       "file": "cypress/e2e/search.cy.js",
@@ -220,7 +220,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "a0ff8124-c94c-4033-afab-ee6ec4749cc9",
+          "uuid": "fed54655-18ce-40ad-88d8-f495f8489c9f",
           "title": "Product Search",
           "fullFile": "",
           "file": "",
@@ -231,7 +231,7 @@
               "title": "should display search results and view product details",
               "fullTitle": "Product Search should display search results and view product details",
               "timedOut": null,
-              "duration": 6024,
+              "duration": 5710,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -240,20 +240,20 @@
               "context": null,
               "code": "const productNames = ['Sleeveless Dress', 'Blue Top', 'Men Tshirt'];\nconst productName = productNames[Math.floor(Math.random() * productNames.length)];\ncy.searchProduct(productName);\ncy.contains(productName).should('be.visible');\ncy.contains('a', 'View Product').click();\ncy.contains('Add to cart').should('be.visible');",
               "err": {},
-              "uuid": "227b0fe7-50ac-4a7e-b977-66968f36bca8",
-              "parentUUID": "a0ff8124-c94c-4033-afab-ee6ec4749cc9",
+              "uuid": "874c0641-cbe5-4ecd-9bba-06ae13c258a6",
+              "parentUUID": "fed54655-18ce-40ad-88d8-f495f8489c9f",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "227b0fe7-50ac-4a7e-b977-66968f36bca8"
+            "874c0641-cbe5-4ecd-9bba-06ae13c258a6"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6024,
+          "duration": 5710,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

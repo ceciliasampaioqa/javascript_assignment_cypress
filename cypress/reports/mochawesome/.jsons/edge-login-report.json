@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-26T10:52:37.132Z",
-    "end": "2025-06-26T10:52:57.797Z",
-    "duration": 20665,
+    "start": "2025-06-27T11:08:18.876Z",
+    "end": "2025-06-27T11:08:39.228Z",
+    "duration": 20352,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "179c9966-dd88-4d8c-80ca-1108e1edc9cf",
+      "uuid": "3ffa744e-3bf4-4f04-8076-046c6df5daca",
       "title": "",
       "fullFile": "cypress/e2e/login.cy.js",
       "file": "cypress/e2e/login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "9167f42a-4eea-42f1-aeea-262c20d95d20",
+          "uuid": "8f53df32-f6bc-4e3a-aec7-d7a0b504de4a",
           "title": "User Login - Valid and Invalid Credentials",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should login successfully with valid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should login successfully with valid credentials",
               "timedOut": null,
-              "duration": 17870,
+              "duration": 17092,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
               "err": {},
-              "uuid": "399a1657-f3c3-425a-ac56-5c44d19e1b08",
-              "parentUUID": "9167f42a-4eea-42f1-aeea-262c20d95d20",
+              "uuid": "7fcff118-0ef3-4fc0-adff-a2e589bba294",
+              "parentUUID": "8f53df32-f6bc-4e3a-aec7-d7a0b504de4a",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should display error with invalid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should display error with invalid credentials",
               "timedOut": null,
-              "duration": 2480,
+              "duration": 2875,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.login('wrong@email.com', 'incorrectPassword');\ncy.get('.login-form p').should('contain.text', 'Your email or password is incorrect!');",
               "err": {},
-              "uuid": "da503131-ba36-4773-9210-8856771ea7c6",
-              "parentUUID": "9167f42a-4eea-42f1-aeea-262c20d95d20",
+              "uuid": "c508a844-582f-419a-bdbb-e68ab9046179",
+              "parentUUID": "8f53df32-f6bc-4e3a-aec7-d7a0b504de4a",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "399a1657-f3c3-425a-ac56-5c44d19e1b08",
-            "da503131-ba36-4773-9210-8856771ea7c6"
+            "7fcff118-0ef3-4fc0-adff-a2e589bba294",
+            "c508a844-582f-419a-bdbb-e68ab9046179"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 20350,
+          "duration": 19967,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

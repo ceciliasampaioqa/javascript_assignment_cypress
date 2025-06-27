@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-26T10:51:42.567Z",
-    "end": "2025-06-26T10:51:53.363Z",
-    "duration": 10796,
+    "start": "2025-06-27T11:07:32.283Z",
+    "end": "2025-06-27T11:07:38.190Z",
+    "duration": 5907,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "5023a2f5-2c49-4579-a865-f3a01f9f1605",
+      "uuid": "b4a09557-a370-44e2-ad8f-1be53cbeba80",
       "title": "",
       "fullFile": "cypress/e2e/addToCart.cy.js",
       "file": "cypress/e2e/addToCart.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "5f90c7f3-44e2-4edc-be19-3808f46ddb17",
+          "uuid": "bdd882b3-da39-4ba2-8857-8924fb177e0c",
           "title": "Add Product to Cart",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,29 @@
               "title": "should add a product to cart and verify cart updates",
               "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
               "timedOut": null,
-              "duration": 10687,
+              "duration": 5785,
               "state": "passed",
-              "speed": "slow",
+              "speed": "medium",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
               "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_description\"]').should('be.exist');",
               "err": {},
-              "uuid": "1e3a80c8-7f39-4251-9ec3-a222020b9507",
-              "parentUUID": "5f90c7f3-44e2-4edc-be19-3808f46ddb17",
+              "uuid": "f70143b0-0475-46b1-9810-89bf8f784d1d",
+              "parentUUID": "bdd882b3-da39-4ba2-8857-8924fb177e0c",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "1e3a80c8-7f39-4251-9ec3-a222020b9507"
+            "f70143b0-0475-46b1-9810-89bf8f784d1d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 10687,
+          "duration": 5785,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

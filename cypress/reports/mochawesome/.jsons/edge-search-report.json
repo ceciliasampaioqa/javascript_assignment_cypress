@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-26T10:53:04.357Z",
-    "end": "2025-06-26T10:53:10.572Z",
-    "duration": 6215,
+    "start": "2025-06-27T11:08:45.749Z",
+    "end": "2025-06-27T11:08:51.565Z",
+    "duration": 5816,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "29e359cf-5afa-426f-896c-13a09584a69a",
+      "uuid": "3e1ecacd-22c5-4a61-83fc-6fdaf09193fe",
       "title": "",
       "fullFile": "cypress/e2e/search.cy.js",
       "file": "cypress/e2e/search.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "a0ff8124-c94c-4033-afab-ee6ec4749cc9",
+          "uuid": "fed54655-18ce-40ad-88d8-f495f8489c9f",
           "title": "Product Search",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should display search results and view product details",
               "fullTitle": "Product Search should display search results and view product details",
               "timedOut": null,
-              "duration": 6024,
+              "duration": 5710,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "const productNames = ['Sleeveless Dress', 'Blue Top', 'Men Tshirt'];\nconst productName = productNames[Math.floor(Math.random() * productNames.length)];\ncy.searchProduct(productName);\ncy.contains(productName).should('be.visible');\ncy.contains('a', 'View Product').click();\ncy.contains('Add to cart').should('be.visible');",
               "err": {},
-              "uuid": "227b0fe7-50ac-4a7e-b977-66968f36bca8",
-              "parentUUID": "a0ff8124-c94c-4033-afab-ee6ec4749cc9",
+              "uuid": "874c0641-cbe5-4ecd-9bba-06ae13c258a6",
+              "parentUUID": "fed54655-18ce-40ad-88d8-f495f8489c9f",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "227b0fe7-50ac-4a7e-b977-66968f36bca8"
+            "874c0641-cbe5-4ecd-9bba-06ae13c258a6"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6024,
+          "duration": 5710,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

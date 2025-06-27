@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-26T10:51:59.371Z",
-    "end": "2025-06-26T10:52:33.263Z",
-    "duration": 33892,
+    "start": "2025-06-27T11:07:43.319Z",
+    "end": "2025-06-27T11:08:13.003Z",
+    "duration": 29684,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "3729d933-2cf0-4a7e-be1b-7ef97e645698",
+      "uuid": "cad9dfc8-ecfb-40a4-82c7-7db2af84f977",
       "title": "",
       "fullFile": "cypress/e2e/checkout.cy.js",
       "file": "cypress/e2e/checkout.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "04eeee4d-c97d-4580-ace5-88914c89036e",
+          "uuid": "05f9d6fa-cc9c-4751-9cac-b0aa1a069159",
           "title": "Checkout Process",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should complete the checkout process successfully",
               "fullTitle": "Checkout Process should complete the checkout process successfully",
               "timedOut": null,
-              "duration": 33706,
+              "duration": 29458,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.addProductToCart();\ncy.contains('View Cart').click();\ncy.checkoutProduct();\ncy.contains('[data-qa=\"order-placed\"]', 'Order Placed!').should('be.visible');",
               "err": {},
-              "uuid": "b745d78d-a98b-4773-b23b-0f4cfc5cf82f",
-              "parentUUID": "04eeee4d-c97d-4580-ace5-88914c89036e",
+              "uuid": "fa2aceab-c6ee-4439-80b8-71b0e6fa3a39",
+              "parentUUID": "05f9d6fa-cc9c-4751-9cac-b0aa1a069159",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "b745d78d-a98b-4773-b23b-0f4cfc5cf82f"
+            "fa2aceab-c6ee-4439-80b8-71b0e6fa3a39"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 33706,
+          "duration": 29458,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
