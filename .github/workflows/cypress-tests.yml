@@ -30,8 +30,16 @@ jobs:
       - name: Run Cypress tests (${{ matrix.browser }})
         run: npm run ci:${{ matrix.browser }}
 
+      - name: Wait for file generation
+        run: sleep 5 # Aguarda 5 segundos para garantir que os arquivos sejam gravados
+        if: always()
+
       - name: List generated mochawesome JSONs
         run: ls -lah cypress/reports/mochawesome/.jsons || echo "Directory not found"
+
+      - name: Debug absolute path
+        run: ls -lah /home/runner/work/${{ github.repository_name }}/${{ github.repository_name }}/cypress/reports/mochawesome/.jsons || echo "Directory not found"
+        if: always()
 
       - name: Upload mochawesome JSONs
         uses: actions/upload-artifact@v4
