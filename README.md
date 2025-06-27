@@ -2,7 +2,7 @@
 
 > This project was developed as part of a technical assessment for **Telit Cinterion**.
 
-It automates end-to-end testing of the web application [Automation Exercise](https://www.automationexercise.com), using [Cypress](https://www.cypress.io/) for test execution, [Cypress Split](https://github.com/bahmutov/cypress-split) for parallelization, and [Mochawesome](https://github.com/adamgruber/mochawesome) for detailed reporting.
+Automates end-to-end testing of the [Automation Exercise](https://www.automationexercise.com) web application, using [Cypress](https://www.cypress.io/) for test execution, [Cypress Split](https://github.com/bahmutov/cypress-split) for parallelization, and [Mochawesome](https://github.com/adamgruber/mochawesome) for detailed reporting.
 
 ---
 
@@ -14,13 +14,14 @@ It automates end-to-end testing of the web application [Automation Exercise](htt
 
 ## 📋 Features Tested
 
-- User **Signup** with dynamic data **(Faker)**
+- User **Signup** with dynamic data (**Faker**)
 - User **Login** (valid and invalid scenarios)
 - **Product Search**
 - **Add Product to Cart**
 - **Checkout** with payment and order confirmation
-- **Parallel test execution across different browsers (Chrome, Firefox, Edge)**
-- Individual HTML **reports (Mochawesome)** per browser
+- **Parallel test execution** across **Chrome**, **Firefox**, and **Edge**
+- Detailed HTML **reports (Mochawesome)** per browser
+- Robust CI/CD pipeline with artifact upload and automatic summary
 
 ---
 
@@ -52,22 +53,21 @@ cd javascript_assignment_cypress
 npm install
 ```
 
-## 🚀 How to run the tests
+---
 
-### Option 1: Run tests in all 3 browsers in parallel (Local Execution)
+## 🚀 How to Run the Tests
+
+### 1. Run all browsers in parallel (Local)
 
 ```bash
 npm run test:parallel
 ```
 
-This will:
+- Cleans previous reports
+- Runs tests in **Chrome**, **Firefox**, and **Edge** simultaneously
+- Generates JSON reports per browser
 
-- Clean previous reports for each browser
-- Run tests in parallel on **Chrome**, **Firefox**, and **Edge** using concurrently
-- Uses **cypress-split** for optimized test distribution
-- Outputs JSON reports per browser.
-
-### Option 2: Run a single browser manually (Local Execution - You can run simultaneously)
+### 2. Run a specific browser (Local - You can run simultaneously)
 
 ```bash
 npm run test:chrome
@@ -75,23 +75,7 @@ npm run test:firefox
 npm run test:edge
 ```
 
-### Option 3: CI/CD Execution (GitHub Actions)
-
-The CI/CD pipeline uses optimized scripts without cypress-split:
-
-```bash
-npm run ci:parallel
-```
-
-Or individual browsers:
-
-```bash
-npm run ci:chrome
-npm run ci:firefox
-npm run ci:edge
-```
-
-### Run Cypress in interactive mode
+### 3. Cypress interactive mode
 
 ```bash
 npm run cypress:open
@@ -99,111 +83,90 @@ npm run cypress:open
 
 ---
 
-## 🚀 GitHub Actions CI/CD
+## 🏗️ Test Structure
 
-This project includes **automated testing with GitHub Actions** that runs on every push and pull request to the main branch.
+- **Custom commands:**  
+  `cypress/support/commands.js`
 
-### 🔄 Automated Workflow
+  - Dynamic signup and logout
+  - Parameterized login
+  - Product search
+  - Add to cart
+  - Complete checkout
 
-The CI/CD pipeline (`cypress-tests.yml`) automatically:
-
-1. **🧪 Runs tests in parallel** across Chrome, Firefox, and Edge browsers
-2. **📊 Generates detailed HTML reports** for each browser using Mochawesome
-3. **📦 Uploads artifacts** with test results and reports for easy access
-4. **📋 Creates a comprehensive summary** in the GitHub Actions run
-5. **🔄 Triggers on every push/PR** to ensure code quality
-
-### 🎯 Benefits of CI/CD
-
-- **✅ Early Bug Detection**: Tests run automatically on every code change
-- **🚀 Faster Feedback**: Get test results within minutes of pushing code
-- **🔄 Consistent Testing**: Same test environment across all developers
-- **📊 Detailed Reports**: HTML reports with screenshots and test details
-- **🛡️ Quality Gate**: Prevents merging code that breaks tests
-- **💼 Professional**: Shows commitment to code quality in your portfolio
-
-### 📥 Accessing Test Reports
-
-After each workflow completion:
-
-1. Go to the **Actions** tab in your repository
-2. Click on the completed workflow run
-3. Scroll down to **Artifacts** section
-4. Download **cypress-html-reports** to view detailed HTML reports
-5. Each browser has its own report with test results, screenshots, and performance data
-
-### 🔍 What Gets Tested Automatically
-
-- ✅ User registration with dynamic data
-- ✅ Login scenarios (valid and invalid)
-- ✅ Product search functionality
-- ✅ Add to cart operations
-- ✅ Complete checkout process
-- ✅ Cross-browser compatibility (Chrome, Firefox, Edge)
+- **Tests:**  
+  `cypress/e2e/`
+  - `addToCart.cy.js`: Add to cart
+  - `checkout.cy.js`: Complete purchase flow
+  - `login.cy.js`: Login (valid and invalid)
+  - `search.cy.js`: Product search
 
 ---
 
 ## 📊 Test Reports (Mochawesome)
 
-Each browser run stores .json results in its specific folder:
+- Test runs generate `.json` files per browser in:
+
+  ```
+  cypress/reports/mochawesome/.jsons/
+  ```
+
+  Examples:
+
+  - `chrome-login-report.json`
+  - `firefox-search-report.json`
+  - `edge-addToCart-report.json`
+
+- After merging, HTML reports are generated in:
+  ```
+  cypress/reports/mochawesome/report-chrome.html
+  cypress/reports/mochawesome/report-firefox.html
+  cypress/reports/mochawesome/report-edge.html
+  ```
+
+### Generate HTML reports manually
 
 ```bash
-cypress/reports/mochawesome/
-  ├── chrome/.jsons/*.json
-  ├── firefox/.jsons/*.json
-  └── edge/.jsons/*.json
+npm run generate:all:reports
 ```
 
-## Steps to generate HTML reports per browser:
+Or individually:
 
 ```bash
 npm run merge:chrome && npm run report:chrome
 npm run merge:firefox && npm run report:firefox
 npm run merge:edge && npm run report:edge
-
 ```
 
-Or run everything at once:
-
-```
-npm run generate:all:reports
-```
-
-### Resulting Reports:
-
-Each report will be generated with a proper title and saved in:
-
-- `cypress/reports/mochawesome/chrome/report-chrome.html`
-- `cypress/reports/mochawesome/firefox/report-firefox.html`
-- `cypress/reports/mochawesome/edge/report-edge.html`
-
-Open these files in your browser to view the results for each browser separately.
-
-## 🛠️ Test Structure
-
-- **Custom commands:**  
-  Location: `cypress/support/commands.js`  
-  Commands for signup, login, search, add to cart, and checkout.
-
-- **Tests:**  
-  Location: `cypress/e2e/`
-  - `addToCart.cy.js`: Tests adding a product to the cart.
-  - `checkout.cy.js`: Tests the complete purchase flow.
-  - `login.cy.js`: Tests login with valid and invalid credentials.
-  - `search.cy.js`: Tests product search.
+Open the `.html` files in your browser to view the results.
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ CI/CD with GitHub Actions
 
-- **BaseUrl:**  
-  The tests run against [https://www.automationexercise.com](https://www.automationexercise.com).
+The pipeline (`.github/workflows/cypress-tests.yml`) automatically:
 
-- **Parallelism:**  
-  Achieved via [cypress-split](https://github.com/bahmutov/cypress-split).
+1. **Runs tests in parallel** on Chrome, Firefox, and Edge
+2. **Generates and uploads artifacts** (JSONs and HTMLs)
+3. **Creates an automatic summary** in GitHub Actions
+4. **Easy download of reports** via artifacts
 
-- **Reports:**  
-  Generated with [Mochawesome](https://github.com/adamgruber/mochawesome).
+### How to access reports in CI
+
+1. Go to the **Actions** tab on GitHub
+2. Click on the completed workflow
+3. Download the artifacts (HTML and JSON reports)
+4. Open the HTML files for detailed analysis
+
+---
+
+## 🛠️ Technical Highlights
+
+- **True parallelization** of tests per browser
+- **Custom commands** for reusability and test clarity
+- **Dynamic data generation** to avoid duplication and ensure robustness
+- **Detailed reports** separated by browser
+- **Complete CI/CD pipeline**, ready for enterprise environments
 
 ---
 
