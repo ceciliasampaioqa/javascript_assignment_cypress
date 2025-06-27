@@ -7,6 +7,6 @@ describe('Add Product to Cart', () => {
       .and('contain.text', 'Your product has been added to cart.')
 
     cy.get('.modal-content').contains('View Cart').click()
-    cy.get('[class="cart_description"]').should('be.exist')
+    cy.get('[class="cart_descriptions"]').should('be.exist')
   })
 })

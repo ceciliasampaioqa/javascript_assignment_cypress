@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2025-06-27T14:18:17.990Z",
-    "end": "2025-06-27T14:18:49.943Z",
-    "duration": 31953,
+    "start": "2025-06-27T14:13:30.295Z",
+    "end": "2025-06-27T14:14:04.694Z",
+    "duration": 34399,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "b20846e8-5ae9-4644-a105-75d0c250c331",
+      "uuid": "5d059d84-0812-4cb9-b4c9-2953a3959025",
       "title": "",
       "fullFile": "cypress/e2e/addToCart.cy.js",
       "file": "cypress/e2e/addToCart.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "70af2cf2-78a0-45fd-b1a0-6439d46d3cee",
+          "uuid": "266f534c-dda2-446d-ae4e-b17b85512dbb",
           "title": "Add Product to Cart",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should add a product to cart and verify cart updates",
               "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
               "timedOut": null,
-              "duration": 12190,
+              "duration": 10606,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -51,8 +51,8 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[class=\"cart_descriptionsss\"]`, but never found it.\n    at  (webpack://javascriptassignmentcypress/./cypress/e2e/addToCart.cy.js:10:44)",
                 "diff": null
               },
-              "uuid": "70aa7a65-1e8b-4b37-a761-55dbb4590bb8",
-              "parentUUID": "70af2cf2-78a0-45fd-b1a0-6439d46d3cee",
+              "uuid": "6083b463-f823-48fb-93eb-f114c4da9c9e",
+              "parentUUID": "266f534c-dda2-446d-ae4e-b17b85512dbb",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "70aa7a65-1e8b-4b37-a761-55dbb4590bb8"
+            "6083b463-f823-48fb-93eb-f114c4da9c9e"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 12190,
+          "duration": 10606,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -98,7 +98,7 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportDir": "reports/mochawesome/.jsons",
         "reportFilename": "firefox-[name]-report",
         "overwrite": false,
         "html": false,

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
-    "clean:all:reports": "concurrently \"rimraf cypress/reports/mochawesome/chrome\" \"rimraf cypress/reports/mochawesome/firefox\" \"rimraf cypress/reports/mochawesome/edge\"",
+    "clean:all:reports": "concurrently \"rimraf cypress/reports/mochawesome/\" \"rimraf cypress/reports/mochawesome/\" \"rimraf cypress/reports/mochawesome/\"",
     "test:chrome": "cypress run --browser chrome --env SPLIT=3,SPLIT_INDEX=1,REPORT_NAME=chrome",
     "test:firefox": "cypress run --browser firefox --env SPLIT=3,SPLIT_INDEX=2,REPORT_NAME=firefox",
     "test:edge": "cypress run --browser edge --env SPLIT=3,SPLIT_INDEX=3,REPORT_NAME=edge",
@@ -13,13 +13,12 @@
     "ci:chrome": "cypress run --browser chrome --env REPORT_NAME=chrome",
     "ci:firefox": "cypress run --browser firefox --env REPORT_NAME=firefox",
     "ci:edge": "cypress run --browser edge --env REPORT_NAME=edge",
-    "ci:parallel": "npm run clean:all:reports && concurrently \"npm run ci:chrome\" \"npm run ci:firefox\" \"npm run ci:edge\"",
-    "merge:chrome": "mochawesome-merge cypress/reports/mochawesome/.jsons/chrome-*.json > cypress/reports/mochawesome/merged-chrome.json",
-    "merge:firefox": "mochawesome-merge cypress/reports/mochawesome/.jsons/firefox-*.json > cypress/reports/mochawesome/merged-firefox.json",
-    "merge:edge": "mochawesome-merge cypress/reports/mochawesome/.jsons/edge-*.json > cypress/reports/mochawesome/merged-edge.json",
-    "report:chrome": "marge cypress/reports/mochawesome/merged-chrome.json -f report-chrome -o cypress/reports/mochawesome --reportTitle \"Test Report - Chrome\"",
-    "report:firefox": "marge cypress/reports/mochawesome/merged-firefox.json -f report-firefox -o cypress/reports/mochawesome --reportTitle \"Test Report - Firefox\"",
-    "report:edge": "marge cypress/reports/mochawesome/merged-edge.json -f report-edge -o cypress/reports/mochawesome --reportTitle \"Test Report - Edge\"",
+    "merge:chrome": "mochawesome-merge reports/mochawesome/.jsons/chrome-*.json > reports/mochawesome/merged-chrome.json",
+    "merge:firefox": "mochawesome-merge reports/mochawesome/.jsons/firefox-*.json > reports/mochawesome/merged-firefox.json",
+    "merge:edge": "mochawesome-merge reports/mochawesome/.jsons/edge-*.json > reports/mochawesome/merged-edge.json",
+    "report:chrome": "marge reports/mochawesome/merged-chrome.json -f report-chrome -o reports/mochawesome --reportTitle \"Test Report - Chrome\"",
+    "report:firefox": "marge reports/mochawesome/merged-firefox.json -f report-firefox -o reports/mochawesome --reportTitle \"Test Report - Firefox\"",
+    "report:edge": "marge reports/mochawesome/merged-edge.json -f report-edge -o reports/mochawesome --reportTitle \"Test Report - Edge\"",
     "generate:all:reports": "npm-run-all merge:chrome report:chrome merge:firefox report:firefox merge:edge report:edge"
   },
   "keywords": [

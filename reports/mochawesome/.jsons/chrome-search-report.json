@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-27T14:19:57.054Z",
-    "end": "2025-06-27T14:20:03.689Z",
-    "duration": 6635,
+    "start": "2025-06-27T14:15:05.429Z",
+    "end": "2025-06-27T14:15:11.363Z",
+    "duration": 5934,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "9dc35f73-4cf9-49c4-bcfe-513db12023e5",
+      "uuid": "1f442b6d-c51c-49bd-9010-7b11b05737f8",
       "title": "",
       "fullFile": "cypress/e2e/search.cy.js",
       "file": "cypress/e2e/search.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "502d04cf-b27b-485f-9b54-d2c5a30a84c5",
+          "uuid": "c68a8abc-a5fe-44ac-b74f-e80afaa7aa14",
           "title": "Product Search",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should display search results and view product details",
               "fullTitle": "Product Search should display search results and view product details",
               "timedOut": null,
-              "duration": 6573,
+              "duration": 5866,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "const productNames = ['Sleeveless Dress', 'Blue Top', 'Men Tshirt'];\nconst productName = productNames[Math.floor(Math.random() * productNames.length)];\ncy.searchProduct(productName);\ncy.contains(productName).should('be.visible');\ncy.contains('a', 'View Product').click();\ncy.contains('Add to cart').should('be.visible');",
               "err": {},
-              "uuid": "9e7518e8-fb58-470d-afe7-57dadd99586f",
-              "parentUUID": "502d04cf-b27b-485f-9b54-d2c5a30a84c5",
+              "uuid": "78129be2-e881-44ed-8e0c-1b937e22c3c6",
+              "parentUUID": "c68a8abc-a5fe-44ac-b74f-e80afaa7aa14",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "9e7518e8-fb58-470d-afe7-57dadd99586f"
+            "78129be2-e881-44ed-8e0c-1b937e22c3c6"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6573,
+          "duration": 5866,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -94,7 +94,7 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/.jsons",
+        "reportDir": "reports/mochawesome/.jsons",
         "reportFilename": "chrome-[name]-report",
         "overwrite": false,
         "html": false,

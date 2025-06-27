@@ -94,6 +94,13 @@ jobs:
       - name: Merge and generate HTML reports
         run: npm run generate:all:reports
 
+      - name: Ensure assets folder exists
+        run: mkdir -p cypress/reports/mochawesome/assets
+
+      - name: Copy assets (if generated locally)
+        run: cp -r node_modules/mochawesome-report-generator/assets/* cypress/reports/mochawesome/assets/ || echo "Assets not copied (may not be needed)"
+        if: always()
+
       - name: Upload HTML reports
         uses: actions/upload-artifact@v4
         with:
@@ -102,6 +109,7 @@ jobs:
             cypress/reports/mochawesome/report-chrome.html
             cypress/reports/mochawesome/report-firefox.html
             cypress/reports/mochawesome/report-edge.html
+            cypress/reports/mochawesome/assets/
           retention-days: 2
         if: always()
 

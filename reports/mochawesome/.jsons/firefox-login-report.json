@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-06-27T14:19:31.075Z",
-    "end": "2025-06-27T14:19:50.714Z",
-    "duration": 19639,
+    "start": "2025-06-27T14:14:44.615Z",
+    "end": "2025-06-27T14:15:06.374Z",
+    "duration": 21759,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "52131fb7-1513-4148-b663-d3c3ec353b3a",
+      "uuid": "c015c64c-9b31-4bc7-9bbc-a67902c10e1d",
       "title": "",
       "fullFile": "cypress/e2e/login.cy.js",
       "file": "cypress/e2e/login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "c6d58e29-952b-4192-8b5d-8dc3febdaa31",
+          "uuid": "96895fd4-403a-46e1-8aed-68d9cacd67c1",
           "title": "User Login - Valid and Invalid Credentials",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should login successfully with valid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should login successfully with valid credentials",
               "timedOut": null,
-              "duration": 17024,
+              "duration": 18860,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "const email = Cypress.env('userEmail');\nconst password = Cypress.env('userPassword');\ncy.login(email, password);\ncy.contains('a', 'Logged in as').should('contain.text', Cypress.env('userName'));\ncy.contains('a', 'Logout').should('be.visible');",
               "err": {},
-              "uuid": "873cb8c2-6de4-4ef4-bc11-50a5e3908c87",
-              "parentUUID": "c6d58e29-952b-4192-8b5d-8dc3febdaa31",
+              "uuid": "e8bcabd3-d98e-4ccf-ab9b-885cb3eb93a5",
+              "parentUUID": "96895fd4-403a-46e1-8aed-68d9cacd67c1",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should display error with invalid credentials",
               "fullTitle": "User Login - Valid and Invalid Credentials should display error with invalid credentials",
               "timedOut": null,
-              "duration": 2430,
+              "duration": 2771,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "cy.login('wrong@email.com', 'incorrectPassword');\ncy.get('.login-form p').should('contain.text', 'Your email or password is incorrect!');",
               "err": {},
-              "uuid": "cc70912c-eabd-4b59-bda7-565d1eb34fd8",
-              "parentUUID": "c6d58e29-952b-4192-8b5d-8dc3febdaa31",
+              "uuid": "54a0e8ec-da10-407d-b765-bd92d84a69d1",
+              "parentUUID": "96895fd4-403a-46e1-8aed-68d9cacd67c1",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "873cb8c2-6de4-4ef4-bc11-50a5e3908c87",
-            "cc70912c-eabd-4b59-bda7-565d1eb34fd8"
+            "e8bcabd3-d98e-4ccf-ab9b-885cb3eb93a5",
+            "54a0e8ec-da10-407d-b765-bd92d84a69d1"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 19454,
+          "duration": 21631,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -102,7 +102,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "chrome-[name]-report",
+        "reportFilename": "firefox-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -113,8 +113,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/.jsons",
-        "reportFilename": "chrome-[name]-report",
+        "reportDir": "reports/mochawesome/.jsons",
+        "reportFilename": "firefox-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,

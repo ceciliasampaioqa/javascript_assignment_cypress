@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2025-06-27T14:18:17.990Z",
-    "end": "2025-06-27T14:18:49.943Z",
-    "duration": 31953,
+    "start": "2025-06-27T14:13:26.852Z",
+    "end": "2025-06-27T14:13:59.583Z",
+    "duration": 32731,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "b20846e8-5ae9-4644-a105-75d0c250c331",
+      "uuid": "aaf1c1b4-d188-46dd-9b88-0faf4e962833",
       "title": "",
       "fullFile": "cypress/e2e/addToCart.cy.js",
       "file": "cypress/e2e/addToCart.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "70af2cf2-78a0-45fd-b1a0-6439d46d3cee",
+          "uuid": "c6c42f98-1a1b-4629-80f7-a7baa9b868e0",
           "title": "Add Product to Cart",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should add a product to cart and verify cart updates",
               "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
               "timedOut": null,
-              "duration": 12190,
+              "duration": 8628,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -48,11 +48,11 @@
               "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_descriptionsss\"]').should('be.exist');",
               "err": {
                 "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[class=\"cart_descriptionsss\"]`, but never found it.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[class=\"cart_descriptionsss\"]`, but never found it.\n    at  (webpack://javascriptassignmentcypress/./cypress/e2e/addToCart.cy.js:10:44)",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[class=\"cart_descriptionsss\"]`, but never found it.\n    at Context.eval (webpack://javascriptassignmentcypress/./cypress/e2e/addToCart.cy.js:10:44)",
                 "diff": null
               },
-              "uuid": "70aa7a65-1e8b-4b37-a761-55dbb4590bb8",
-              "parentUUID": "70af2cf2-78a0-45fd-b1a0-6439d46d3cee",
+              "uuid": "7605304b-937e-4c25-a742-93f35c79e502",
+              "parentUUID": "c6c42f98-1a1b-4629-80f7-a7baa9b868e0",
               "isHook": false,
               "skipped": false
             }
@@ -60,11 +60,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "70aa7a65-1e8b-4b37-a761-55dbb4590bb8"
+            "7605304b-937e-4c25-a742-93f35c79e502"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 12190,
+          "duration": 8628,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -87,7 +87,7 @@
     "mochawesome": {
       "options": {
         "quiet": false,
-        "reportFilename": "firefox-[name]-report",
+        "reportFilename": "edge-[name]-report",
         "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
@@ -98,8 +98,8 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/reports/mochawesome/.jsons",
-        "reportFilename": "firefox-[name]-report",
+        "reportDir": "reports/mochawesome/.jsons",
+        "reportFilename": "edge-[name]-report",
         "overwrite": false,
         "html": false,
         "json": true,

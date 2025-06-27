@@ -15,6 +15,7 @@ module.exports = defineConfig({
     runMode: 2,
     openMode: 2
   },
+  screenshotOnRunFailure: true,
   e2e: {
     baseUrl: 'https://www.automationexercise.com',
     setupNodeEvents(on, config) {

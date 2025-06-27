@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 1,
-    "passes": 1,
+    "passes": 0,
     "pending": 0,
-    "failures": 0,
-    "start": "2025-06-27T11:07:29.596Z",
-    "end": "2025-06-27T11:07:35.909Z",
-    "duration": 6313,
+    "failures": 1,
+    "start": "2025-06-27T14:18:15.025Z",
+    "end": "2025-06-27T14:18:53.180Z",
+    "duration": 38155,
     "testsRegistered": 1,
-    "passPercent": 100,
+    "passPercent": 0,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "d96b6aaa-ba00-4885-aad5-9848590f5711",
+      "uuid": "361d7ff7-3e97-427f-b3c4-a4b9f27c54a8",
       "title": "",
       "fullFile": "cypress/e2e/addToCart.cy.js",
       "file": "cypress/e2e/addToCart.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2d1cdfbe-f8c7-4bcd-a5aa-a7d38cceee77",
+          "uuid": "1171fe5f-7a09-442e-883d-95353d720a94",
           "title": "Add Product to Cart",
           "fullFile": "",
           "file": "",
@@ -38,29 +38,33 @@
               "title": "should add a product to cart and verify cart updates",
               "fullTitle": "Add Product to Cart should add a product to cart and verify cart updates",
               "timedOut": null,
-              "duration": 6230,
-              "state": "passed",
-              "speed": "medium",
-              "pass": true,
-              "fail": false,
+              "duration": 19089,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
               "pending": false,
               "context": null,
-              "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_description\"]').should('be.exist');",
-              "err": {},
-              "uuid": "5031fc7b-3a4f-4705-b161-af78c3e498b9",
-              "parentUUID": "2d1cdfbe-f8c7-4bcd-a5aa-a7d38cceee77",
+              "code": "cy.addProductToCart();\ncy.get('.modal-content').should('contain.text', 'Added!').and('contain.text', 'Your product has been added to cart.');\ncy.get('.modal-content').contains('View Cart').click();\ncy.get('[class=\"cart_descriptionsss\"]').should('be.exist');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[class=\"cart_descriptionsss\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[class=\"cart_descriptionsss\"]`, but never found it.\n    at Context.eval (webpack://javascriptassignmentcypress/./cypress/e2e/addToCart.cy.js:10:44)",
+                "diff": null
+              },
+              "uuid": "e07dbd82-a10f-47bc-9342-0586f42b8b5c",
+              "parentUUID": "1171fe5f-7a09-442e-883d-95353d720a94",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [
-            "5031fc7b-3a4f-4705-b161-af78c3e498b9"
+          "passes": [],
+          "failures": [
+            "e07dbd82-a10f-47bc-9342-0586f42b8b5c"
           ],
-          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6230,
+          "duration": 19089,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
