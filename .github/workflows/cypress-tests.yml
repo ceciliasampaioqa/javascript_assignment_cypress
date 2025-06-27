@@ -31,20 +31,25 @@ jobs:
         run: npm run ci:${{ matrix.browser }}
 
       - name: Wait for file generation
-        run: sleep 5 # Aguarda 5 segundos para garantir que os arquivos sejam gravados
+        run: sleep 5
         if: always()
 
-      - name: List generated mochawesome JSONs
-        run: ls -lah cypress/reports/mochawesome/.jsons || echo "Directory not found"
+      - name: Create isolated directory
+        run: mkdir -p cypress/reports/mochawesome/.jsons/${{ matrix.browser }}
 
-      - name: Debug glob
-        run: ls -lah cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*.json || echo "No files found"
+      - name: Move JSONs to isolated directory
+        run: mv cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*.json cypress/reports/mochawesome/.jsons/${{ matrix.browser }}/
+        if: always()
+
+      - name: List isolated JSONs
+        run: ls -lah cypress/reports/mochawesome/.jsons/${{ matrix.browser }} || echo "No files found"
+        if: always()
 
       - name: Upload mochawesome JSONs
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-jsons-${{ matrix.browser }}
-          path: cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*.json
+          path: cypress/reports/mochawesome/.jsons/${{ matrix.browser }}/
           retention-days: 2
         if: always()
 
@@ -72,19 +77,19 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: mochawesome-jsons-chrome
-          path: cypress/reports/mochawesome/.jsons
+          path: cypress/reports/mochawesome/.jsons/chrome
 
       - name: Download mochawesome JSONs (firefox)
         uses: actions/download-artifact@v4
         with:
           name: mochawesome-jsons-firefox
-          path: cypress/reports/mochawesome/.jsons
+          path: cypress/reports/mochawesome/.jsons/firefox
 
       - name: Download mochawesome JSONs (edge)
         uses: actions/download-artifact@v4
         with:
           name: mochawesome-jsons-edge
-          path: cypress/reports/mochawesome/.jsons
+          path: cypress/reports/mochawesome/.jsons/edge
 
       - name: Merge and generate HTML reports
         run: npm run generate:all:reports
@@ -98,6 +103,7 @@ jobs:
             cypress/reports/mochawesome/report-firefox.html
             cypress/reports/mochawesome/report-edge.html
           retention-days: 2
+        if: always()
 
       - name: Add summary to workflow
         run: |
@@ -109,3 +115,4 @@ jobs:
           echo "- **Edge**: report-edge.html" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📁 [Download reports from artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
+        if: always()
