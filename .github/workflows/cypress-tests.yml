@@ -37,9 +37,8 @@ jobs:
       - name: List generated mochawesome JSONs
         run: ls -lah cypress/reports/mochawesome/.jsons || echo "Directory not found"
 
-      - name: Debug absolute path
-        run: ls -lah /home/runner/work/${{ github.repository_name }}/${{ github.repository_name }}/cypress/reports/mochawesome/.jsons || echo "Directory not found"
-        if: always()
+      - name: Debug glob
+        run: ls -lah cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*.json || echo "No files found"
 
       - name: Upload mochawesome JSONs
         uses: actions/upload-artifact@v4
