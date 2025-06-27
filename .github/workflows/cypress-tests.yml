@@ -34,11 +34,24 @@ jobs:
         run: sleep 5
         if: always()
 
+      - name: Clean JSONs directory
+        run: rm -rf cypress/reports/mochawesome/.jsons/* || echo "No files to clean"
+        if: always()
+
       - name: Create isolated directory
         run: mkdir -p cypress/reports/mochawesome/.jsons/${{ matrix.browser }}
 
-      - name: Move JSONs to isolated directory
-        run: mv cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*.json cypress/reports/mochawesome/.jsons/${{ matrix.browser }}/
+      - name: Move latest JSONs to isolated directory
+        run: |
+          # Move apenas o arquivo mais recente para cada teste, evitando duplicatas
+          for file in cypress/reports/mochawesome/.jsons/*${{ matrix.browser }}*-report.json; do
+            if [ -f "$file" ]; then
+              latest_file=$(ls -t "$file" "$file"_* 2>/dev/null | head -n 1)
+              if [ -n "$latest_file" ]; then
+                mv "$latest_file" cypress/reports/mochawesome/.jsons/${{ matrix.browser }}/
+              fi
+            fi
+          done
         if: always()
 
       - name: List isolated JSONs
@@ -51,7 +64,7 @@ jobs:
           name: mochawesome-jsons-${{ matrix.browser }}
           path: cypress/reports/mochawesome/.jsons/${{ matrix.browser }}/
           retention-days: 2
-          overwrite: true # Força a sobrescrita de artefatos antigos
+          overwrite: true
         if: always()
 
   generate-report:
